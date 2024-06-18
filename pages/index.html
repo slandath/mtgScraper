@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" class="bg-gray-200">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MTG Scraper</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <div class="text-center">
+      <h1 class="text-3xl p-2">Welcome to MTG Scraper</h1>
+      <p class="p-2">
+        This web app scrapes Magic: The Gathering card prices from eBay sold
+        listings.
+      </p>
+      <button class="border border-black p-2 rounded bg-green-200" id="btn">
+        Refresh
+      </button>
+      <div class="flex justify-center p-2">
+        <table class="border-collapse p-2" id="start"></table>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
