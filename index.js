@@ -8,7 +8,7 @@ const port = process.env.PORT;
 
 fastify.get('/', async (request, reply) => {
   const htmlContent =
-    '<h1 style="text-align: center">Welcome to MTG Scraper!</h1><p style="text-align: center">This web app scrapes Magic: The Gathering card prices from eBay sold listings.</p><p style="text-align: center">To scrape, go to "/scrape".</p>';
+    '<html lang="en"><head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>MTG Scraper</title> </head> <body> <h1 style="text-align: center">Welcome to MTG Scraper!</h1> <p style="text-align: center">This web app scrapes Magic: The Gathering card prices from eBay sold listings.</p> <p style="text-align: center">To scrape, go to "/scrape".</p> </body></html>';
   
   reply.code(200).type('text/html; charset=utf-8').send(htmlContent);
 });
