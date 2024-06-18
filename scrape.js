@@ -19,7 +19,7 @@ async function scrape(url) {
     $('div.s-item__wrapper.clearfix', html).each(function () {
         const title = $(this).find('div.s-item__title')
         const price = $(this).find('span.s-item__price')
-        if ($(name).text() === "Shop on eBay") {
+        if ($(title).text() === "Shop on eBay") {
             return
         }
       const listing = new Listing($(title).text(), $(price).text())
