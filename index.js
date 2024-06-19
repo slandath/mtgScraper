@@ -3,6 +3,7 @@ import scrape from "./scrape.js";
 import path from "path";
 import { fileURLToPath } from "url";
 import fastifyStatic from "@fastify/static";
+import multipart from '@fastify/multipart';
 
 const fastify = Fastify({
   logger: true,
@@ -14,6 +15,7 @@ const __dirname = path.dirname(__filename);
 fastify.register(fastifyStatic, {
   root: path.join(__dirname, "pages"),
 });
+fastify.register(multipart)
 
 fastify.get("/", function (request, reply) {
   reply.sendFile("index.html");
@@ -21,8 +23,9 @@ fastify.get("/", function (request, reply) {
 
 fastify.post("/scrape", async (request, reply) => {
   try {
-    console.log("Request = " + request, "Request Body = " + request.body)
-    const url = "https://www.ebay.com/sch/i.html?_from=R40&_nkw=" + request.body + "+mtg&_sacat=0&LH_Sold=1&LH_Complete=1&LH_PrefLoc=1&_sop=13"
+    const card = await request.multipart()
+    console.log(card)
+    const url = "https://www.ebay.com/sch/i.html?_from=R40&_nkw=" + card + "+mtg&_sacat=0&LH_Sold=1&LH_Complete=1&LH_PrefLoc=1&_sop=13"
   const listings = await scrape(
     url,
     "div.s-item__wrapper.clearfix",
