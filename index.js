@@ -19,14 +19,20 @@ fastify.get("/", function (request, reply) {
   reply.sendFile("index.html");
 });
 
-fastify.get("/scrape", async (request, reply) => {
+fastify.post("/scrape", async (request, reply) => {
+  try {
+    const url = "https://www.ebay.com/sch/i.html?_from=R40&_nkw=" + request.body + "+mtg&_sacat=0&LH_Sold=1&LH_Complete=1&LH_PrefLoc=1&_sop=13"
   const listings = await scrape(
-    "https://www.ebay.com/sch/i.html?_from=R40&_nkw=scrubland+mtg&_sacat=0&LH_Sold=1&LH_Complete=1&LH_PrefLoc=1&_sop=13",
+    url,
     "div.s-item__wrapper.clearfix",
     "div.s-item__title",
     "span.s-item__price"
   );
   return reply.send(listings);
+  } catch (error) {
+    console.error(error);
+    reply.code(500).send("Error receiving data")
+  }
 });
 
 const start = async () => {
