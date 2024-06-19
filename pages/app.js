@@ -24,6 +24,7 @@ async function postData(url, data) {
   };
   try {
     const response = await fetch(url, options);
+    console.log(JSON.stringify(data))
     if (!response.ok) {
       throw new Error(`Error! status: ${response.status}`);
     }

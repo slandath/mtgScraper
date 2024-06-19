@@ -23,7 +23,7 @@ fastify.get("/", function (request, reply) {
 
 fastify.post("/scrape", async (request, reply) => {
   try {
-    const card = await request.multipart()
+    const card = request.body
     console.log(card)
     const url = "https://www.ebay.com/sch/i.html?_from=R40&_nkw=" + card + "+mtg&_sacat=0&LH_Sold=1&LH_Complete=1&LH_PrefLoc=1&_sop=13"
   const listings = await scrape(
