@@ -21,13 +21,8 @@ fastify.get("/", function (request, reply) {
   reply.sendFile("index.html");
 });
 
-fastify.post("/scrape", async (request, reply) => {
-  try {
-    const card = request.body.cardField
-    console.log(card)
-    if (!request) {
-      throw new Error("No Data")
-    }
+fastify.post("/scrape", (request, reply) => {
+    console.log(request.body)
   //   const url = "https://www.ebay.com/sch/i.html?_from=R40&_nkw=" + card + "+mtg&_sacat=0&LH_Sold=1&LH_Complete=1&LH_PrefLoc=1&_sop=13"
   // const listings = await scrape(
   //   url,
@@ -36,12 +31,9 @@ fastify.post("/scrape", async (request, reply) => {
   //   "span.s-item__price"
   // );
   // return reply.send(listings);
-    reply.code(200).send(card)
-  } catch (error) {
-    console.error(error);
-    reply.code(500).send("Error receiving data")
+    reply.code(200).send(request.body)
   }
-});
+);
 
 const start = async () => {
   try {
