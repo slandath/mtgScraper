@@ -10,7 +10,6 @@ function logFormData(event) {
   event.preventDefault();
   const form = event.target;
   const formData = new FormData(form);
-  console.log(formData);
   const url = "https://mtgscraper-production.up.railway.app/scrape"
   postData(url, formData)
 }
@@ -22,7 +21,6 @@ async function postData(url, data) {
   };
   try {
     const response = await fetch(url, options);
-    console.log(JSON.stringify(data))
     if (!response.ok) {
       throw new Error(`Error! status: ${response.status}`);
     }
