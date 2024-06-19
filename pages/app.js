@@ -10,7 +10,7 @@ function logFormData(event) {
   event.preventDefault();
   const form = event.target;
   const formData = new FormData(form);
-  console.log(form);
+  console.log(formData);
   const url = "https://mtgscraper-production.up.railway.app/scrape"
   postData(url, formData)
 }
