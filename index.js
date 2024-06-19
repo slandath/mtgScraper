@@ -23,9 +23,8 @@ fastify.get("/", function (request, reply) {
 
 fastify.post("/scrape", async (request, reply) => {
   try {
-    const card = await request.body
-    console.log(card)
-    if (!card) {
+    console.log(request)
+    if (!request) {
       throw new Error("No Data")
     }
   //   const url = "https://www.ebay.com/sch/i.html?_from=R40&_nkw=" + card + "+mtg&_sacat=0&LH_Sold=1&LH_Complete=1&LH_PrefLoc=1&_sop=13"
@@ -36,7 +35,7 @@ fastify.post("/scrape", async (request, reply) => {
   //   "span.s-item__price"
   // );
   // return reply.send(listings);
-    reply.code(200).send(card)
+    reply.code(200).send(request)
   } catch (error) {
     console.error(error);
     reply.code(500).send("Error receiving data")

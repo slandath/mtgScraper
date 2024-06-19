@@ -22,7 +22,7 @@ async function postData(url, data) {
   try {
     const response = await fetch(url, options);
     if (!response.ok) {
-      throw new Error(`Error! status: ${response.status}`);
+      throw new Error(`${response.status}`);
     }
     const responseJson = await response.json();
     console.log("POST request successful:", responseJson);
