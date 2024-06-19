@@ -23,7 +23,8 @@ fastify.get("/", function (request, reply) {
 
 fastify.post("/scrape", async (request, reply) => {
   try {
-    console.log(request)
+    const card = request.body.cardField
+    console.log(card)
     if (!request) {
       throw new Error("No Data")
     }
@@ -35,7 +36,7 @@ fastify.post("/scrape", async (request, reply) => {
   //   "span.s-item__price"
   // );
   // return reply.send(listings);
-    reply.code(200).send(request)
+    reply.code(200).send(card)
   } catch (error) {
     console.error(error);
     reply.code(500).send("Error receiving data")
