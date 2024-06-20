@@ -10,5 +10,8 @@
     "dev": "nodemon --env-file=.env index.js",
     "start": "node index.js"
   },
-  "type": "module"
+  "type": "module",
+  "devDependencies": {
+    "tailwindcss": "^3.4.4"
+  }
 }
