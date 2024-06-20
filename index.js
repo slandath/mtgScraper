@@ -15,14 +15,16 @@ const __dirname = path.dirname(__filename);
 fastify.register(fastifyStatic, {
   root: path.join(__dirname, "pages"),
 });
-fastify.register(multipart)
+fastify.register(multipart, {
+  attachFieldsToBody: 'keyValues'
+})
 
 fastify.get("/", function (request, reply) {
   reply.sendFile("index.html");
 });
 
 fastify.post("/scrape", (request, reply) => {
-    console.log(request.body)
+    console.log(request.body.cardField)
   //   const url = "https://www.ebay.com/sch/i.html?_from=R40&_nkw=" + card + "+mtg&_sacat=0&LH_Sold=1&LH_Complete=1&LH_PrefLoc=1&_sop=13"
   // const listings = await scrape(
   //   url,
@@ -31,7 +33,10 @@ fastify.post("/scrape", (request, reply) => {
   //   "span.s-item__price"
   // );
   // return reply.send(listings);
-    reply.code(200).send(request.body)
+  if (!request.body.cardField) {
+    reply.code(400)
+  }
+    reply.code(200).send(request.body.cardField)
   }
 );
 
