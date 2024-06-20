@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="bg-gray-200">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8" />
@@ -8,8 +8,8 @@
   <link href="./output.css" rel="stylesheet">
 </head>
 
-<body>
-  <div class="text-center">
+<body class="">
+  <div class=" text-center">
     <h1 class="text-3xl p-2">Welcome to MTG Scraper</h1>
     <p class="p-2">
       This web app scrapes Magic: The Gathering card prices from eBay sold
@@ -18,10 +18,11 @@
     <div class="flex justify-center p-2">
       <table class="border-collapse p-2" id="start"></table>
     </div>
+    <hr class="h-px my-4 bg-gray-200 border-0 dark:bg-gray-700">
     <form id="myForm">
       <label for="cardField" class="p-2">Card</label>
       <input type="text" name="cardField" class="p-2 rounded border border-black" />
-      <button type="submit" class="border border-black p-2 rounded bg-green-200" id="btn">
+      <button type="submit" class="border border-black p-2 rounded bg-green-200 hover:bg-green-400" id="btn">
         Refresh
       </button>
     </form>
