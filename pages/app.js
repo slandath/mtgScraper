@@ -1,11 +1,10 @@
-const btn = document.querySelector('#btn');
-// btn.addEventListener("click", () =>
-//   getListings("https://mtgscraper-production.up.railway.app/scrape")
-// );
-
 const myForm = document.querySelector("#myForm");
 myForm.addEventListener("submit", logFormData)
-
+/*
+1. Prevents the page from reloading
+2. Create a new FormData object, which contains the input(s) and value(s) from the form as key/value pairs
+3. Calls postData function and passes in the URL and FormData object
+*/
 function logFormData(event) {
   event.preventDefault();
   const form = event.target;
@@ -13,7 +12,11 @@ function logFormData(event) {
   const url = "https://mtgscraper-production.up.railway.app/scrape"
   postData(url, formData)
 }
-
+/*
+1. Makes a FETCH POST request to the url
+2. Stores the data in local storage as 'listings'
+3. Triggers a page reload, which will re-render the HTML table
+*/
 async function postData(url, data) {
   const options = {
     method: 'POST',
@@ -24,31 +27,13 @@ async function postData(url, data) {
     if (!response.ok) {
       throw new Error(`${response.status}`);
     }
-    const responseJson = await response.json();
-    console.log("POST request successful:", responseJson);
-  } catch (error) {
-    console.error("POST request failed:", error);
-  }
-}
-
-/*
-1. Makes a FETCH GET request to the url
-2. Stores the data in local storage as 'listings'
-3. Triggers renderTable function
-*/
-async function getListings(url) {
-  try {
-    const response = await fetch(url);
-    if (!response) {
-      throw new Error('Failed to Fetch');
-    }
     const data = await response.json();
     const stringifiedData = JSON.stringify(data);
+    localStorage.clear();
     localStorage.setItem('listings', stringifiedData);
-    renderTable();
+    window.location.reload();
   } catch (error) {
-    console.error(error);
-    return error;
+    console.error("POST request failed:", error);
   }
 }
 /*
@@ -78,5 +63,5 @@ function renderTable() {
     cellTwo.className = 'border border-black p-2';
   }
 }
-
+// Functions called on page load
 renderTable();
