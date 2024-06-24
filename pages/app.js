@@ -59,8 +59,8 @@ function renderTable() {
     row.appendChild(cellTwo);
     cellOne.innerText = listings[i].title;
     cellTwo.innerText = listings[i].price;
-    cellOne.className = 'border border-black p-2';
-    cellTwo.className = 'border border-black p-2';
+    cellOne.className = '';
+    cellTwo.className = '';
   }
 }
 // Functions called on page load

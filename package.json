@@ -8,12 +8,8 @@
   },
   "scripts": {
     "nodemon": "nodemon index.js",
-    "tailwind": "npx tailwindcss -o pages/output.css --minify",
-    "dev": "npm run tailwind && npm run nodemon",
+    "dev": "npm run nodemon",
     "start": "node index.js"
   },
-  "type": "module",
-  "devDependencies": {
-    "tailwindcss": "^3.4.4"
-  }
+  "type": "module"
 }
